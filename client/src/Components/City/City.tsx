@@ -9,8 +9,22 @@ export default function City() {
     setCity(e.target.value)
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
 
+    try {
+      const promiseGpt = fetch('http://localhost:5000/gpt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ city })
+      })
+
+      const responseGpt = await promiseGpt;
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
