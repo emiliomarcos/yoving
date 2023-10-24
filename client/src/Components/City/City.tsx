@@ -3,13 +3,14 @@ import './City.css'
 
 export default function City() {
 
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState('');
+  const [experiences, setExperiences] = useState('');
 
   function handleCity(e) {
     setCity(e.target.value)
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
@@ -22,6 +23,14 @@ export default function City() {
       })
 
       const responseGpt = await promiseGpt;
+
+      if (responseGpt.ok) {
+        const reponseGptJSON = await responseGpt.json();
+        setExperiences(reponseGptJSON.choices[0].message.content);
+      } else {
+        console.error(responseGpt)
+      }
+
     } catch (error) {
       console.error(error)
     }
@@ -35,6 +44,7 @@ export default function City() {
         <br></br>
         <button>Go</button>
       </form>
+      {experiences ? experiences : null}
     </>
   )
 }
