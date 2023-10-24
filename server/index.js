@@ -14,3 +14,11 @@ app.use(cors({
 app.get('/', async (req, res) => {
   res.send('Server is awake');
 })
+
+function startServer() {
+  app.listen(5000, () => {
+    console.log('Server is running on port http://localhost:5000');
+  })
+}
+
+startServer();
