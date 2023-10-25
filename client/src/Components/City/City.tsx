@@ -4,10 +4,12 @@ import './City.css'
 export default function City() {
 
   const [city, setCity] = useState('');
+  const [gptPrompt, setGptPrompt] = useState('');
   const [experiences, setExperiences] = useState('');
 
   function handleCity(e) {
-    setCity(e.target.value)
+    setCity(e.target.value);
+    setGptPrompt(`I am someone that values nature, sunsets, cool buildings and my main hobby is yoga, I am going to ${city}`)
   }
 
   async function handleSubmit(e) {
@@ -19,7 +21,7 @@ export default function City() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ city })
+        body: JSON.stringify({ gptPrompt })
       })
 
       const responseGpt = await promiseGpt;
