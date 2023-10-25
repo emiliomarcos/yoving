@@ -27,12 +27,11 @@ export default function City() {
       const responseGpt = await promiseGpt;
 
       if (responseGpt.ok) {
-        const reponseGptJSON = await responseGpt.json();
-        setExperiences(reponseGptJSON.choices[0].message.content);
+        const responseGptJSON = await responseGpt.json();
+        setExperiences(responseGptJSON.choices[0].message.content);
       } else {
-        console.error(responseGpt)
+        console.error(responseGpt);
       }
-
     } catch (error) {
       console.error(error)
     }
