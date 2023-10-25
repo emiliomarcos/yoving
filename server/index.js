@@ -1,16 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
-import { gptRoutes } from './gptRoutes.js';
+import gptRoutes from './gptRoutes.js';
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors())
+app.use(express.json());
 app.use(cors({
   origin: ['http://127.0.0.1:5173']
-}))
+}));
 
 app.use('/gpt', gptRoutes);
 
