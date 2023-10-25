@@ -28,7 +28,7 @@ export default function City() {
 
       if (responseGpt.ok) {
         const reponseGptJSON = await responseGpt.json();
-        setExperiences(reponseGptJSON.choices[0]);
+        setExperiences(reponseGptJSON.choices[0].message.content);
       } else {
         console.error(responseGpt)
       }

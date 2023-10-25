@@ -22,7 +22,7 @@ router.route('/').post(async (req, res) => {
     });
     console.log(completion);
     const experiences = completion;
-    res.status(200).json();
+    res.status(200).json(experiences);
   } catch (error) {
     console.error(error);
     res.status(500).json({error: 'There was an error processing your request'});
