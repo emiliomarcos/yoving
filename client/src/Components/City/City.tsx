@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
+import { Loader } from '..'
 import './City.css'
 
 export default function City() {
@@ -6,6 +7,7 @@ export default function City() {
   const [city, setCity] = useState('');
   const [gptPrompt, setGptPrompt] = useState('');
   const [experiences, setExperiences] = useState('');
+  const [loadingStatus, setLoadingStatus] = useState(false);
 
   function handleCity(e: ChangeEvent<HTMLInputElement>) {
     setCity(e.target.value);
@@ -16,6 +18,7 @@ export default function City() {
     e.preventDefault();
 
     try {
+      setLoadingStatus(true);
       // const promiseGpt = fetch('http://localhost:5000/gpt', {
       const promiseGpt = fetch('https://yoving-server.onrender.com/gpt', {
         method: 'POST',
@@ -35,18 +38,24 @@ export default function City() {
       }
     } catch (error) {
       console.error(error)
+    } finally {
+      setLoadingStatus(false);
     }
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input className='city-input' type='text' placeholder='City' onChange={handleCity} />
-        <br></br>
-        <br></br>
-        <button>Go</button>
-      </form>
-      {experiences ? experiences : null}
+      {loadingStatus ? <Loader /> :
+        <>
+          <form onSubmit={handleSubmit}>
+            <input className='city-input' type='text' placeholder='City' onChange={handleCity} />
+            <br></br>
+            <br></br>
+            <button>Go</button>
+          </form>
+          {experiences ? experiences : null}
+        </>
+      }
     </>
   )
 }
