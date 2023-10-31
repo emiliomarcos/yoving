@@ -17,7 +17,7 @@ export default function City() {
 
     try {
       // const promiseGpt = fetch('http://localhost:5000/gpt', {
-      const promiseGpt = fetch('https://yoving-server.onrender.com', {
+      const promiseGpt = fetch('https://yoving-server.onrender.com/gpt', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
