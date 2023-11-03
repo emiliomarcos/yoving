@@ -47,13 +47,13 @@ export default function City() {
     <>
       {loadingStatus ? <Loader /> :
         <>
-          <form onSubmit={handleSubmit}>
-            <input className='city-input' type='text' placeholder='City' onChange={handleCity} />
-            <br></br>
-            <br></br>
-            <button>Go</button>
-          </form>
-          {experiences ? experiences : null}
+        <form onSubmit={handleSubmit}>
+          <input className='city-input' type='text' placeholder='City' onChange={handleCity} />
+          <br></br>
+          <br></br>
+          <button>Go</button>
+        </form>
+        {experiences ? experiences : null}
         </>
       }
     </>
